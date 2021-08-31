@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 功能：备份 nginx 日志到 backup 目录
 
-SVC_DIR=/home/jsproxy/server
+SVC_DIR=/root/server
 LOG_DIR=$SVC_DIR/nginx/logs
 DST_DIR=$SVC_DIR/log-svc/backup
 

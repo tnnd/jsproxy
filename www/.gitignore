@@ -1,3 +1,5 @@
-*
-!README.md
-!.gitignore
+._*
+www
+cert
+nginx
+*.sh

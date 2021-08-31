@@ -1,22 +1,20 @@
 FROM centos:latest
 
-# 安装依赖
-RUN yum install -y \
-	gcc gcc-c++ \
-	pcre pcre-devel \
-	openssl openssl-devel \
-	zlib zlib-devel git corntabs
-
-# 添加用户
-RUN useradd jsproxy -g nobody && su jsproxy
+# 编译安装时所需依赖
+#RUN yum install -y \
+#	gcc gcc-c++ \
+#	pcre pcre-devel \
+#	openssl openssl-devel \
+#	zlib zlib-devel git crontabs
+#RUN dnf group install -y "Development Tools"
 
 # 添加文件夹
-ADD . /home/jsproxy/server
+ADD . /root/server
 
 # 安装服务器
-RUN bash /home/jsproxy/server/setup-nginx.sh
+RUN bash /root/server/install.sh
 
 EXPOSE 8080 8443
 
 # 启动服务
-CMD ["/home/jsproxy/openresty/nginx/sbin/nginx","-c","/home/jsproxy/server/nginx.conf","-p","/home/jsproxy/server/nginx","-g","daemon off;"]
+CMD ["/root/server/openresty/nginx/sbin/nginx","-c","/root/server/nginx.conf","-p","/root/server/nginx","-g","daemon off;"]
